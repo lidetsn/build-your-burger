@@ -4,7 +4,7 @@ const mongoose=require("mongoose")
 
 const connectDb=async ()=>{
                 try {
-                  const connected=  mongoose.connect(process.env.MONGODB,{ useNewUrlParser: true, useUnifiedTopology: true})
+                  const connected= await mongoose.connect(process.env.MONGODB,{ useNewUrlParser: true, useUnifiedTopology: true})
                         if(connected){
                             console.log("db connected successfuly")
                         }

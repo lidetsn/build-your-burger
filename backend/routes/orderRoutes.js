@@ -3,13 +3,22 @@ const router=require("express").Router()
 const Order=require("../models/orders")
 
 
-router.post("/",(req,res)=>{
+router.post("/",async (req,res)=>{
+      const data=req.body
+      console.log(data)
+           const order=new Order(data)
+         const ress=await order.save()
+         res.send("recieved")
 
 
 })
 
-router.get("/", (req,res)=>{
-    res.send("WELCOME TO EXPRESS ORDER")
+router.get("/", async(req,res)=>{
+     const data=await Order.find({})
+     console.log(data) 
+     res.json(data)
+    
+  
 
 })
 

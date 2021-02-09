@@ -10,6 +10,9 @@ const app=express()
 
 const PORT=process.env.PORT|| 1000
 
+app.use(express.urlencoded({extended:true}))
+app.use(express.json())
+
 
 
 app.use("/api/order/", require("./routes/orderRoutes"))
