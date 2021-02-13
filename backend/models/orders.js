@@ -4,13 +4,12 @@ const mongoose=require("mongoose")
 const orderSchema=new mongoose.Schema({
     ingredients:{},
     customer: {
-        name: {type: String},
-        address: {
-            street:{type: String},
-            zipCode: {type: String},
-            country: {type: String},
-        },
-        email: {type: String},
+                name: {type: String},      
+                street:{type: String},
+                zipCode: {type: String},
+                country: {type: String},      
+                email: {type: String},
+                deliveryMethod:{  type:String  }
     },
     price:{
         type:Number,
@@ -18,9 +17,7 @@ const orderSchema=new mongoose.Schema({
         default:0.0
         
     },
-    deliveryMethod:{
-          type:String
-    }
+   
        
 })
 module.exports=Order=mongoose.model("order",orderSchema)

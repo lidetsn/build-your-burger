@@ -1,44 +1,38 @@
-import React, { Component } from 'react';
+import React, {useEffect } from 'react';
+import {useSelector,useDispatch} from 'react-redux'
 
 import Order from '../../Order/Order';
+import Spinner from '../../Spinner/Spinner'
 
-import axios from 'axios'
+import * as actions from '../../../store/actions/index';
 
-class Orders extends Component {
-    state = {
-        orders: [],
-        loading: true
-    }
 
-        componentDidMount(){
-            axios.get('/api/order')
-                    .then(res => {
-                        const fetchedOrders = [];
-                        for (let key in res.data) {
-                            fetchedOrders.push({
-                                ...res.data[key],
-                                id: key
-                            });
-                        }
-                        this.setState({loading: false, orders: fetchedOrders});
-                    })
-                    .catch(err => {
-                        this.setState({loading: false});
-                    });
+const Orders=()=>{
 
-        }
-   
-    render () {
+           const dispatch = useDispatch()
+           const order = useSelector(state => state.order)
+           const {orders,loading}=order
+       
+        
+       useEffect(() => {
+           dispatch(actions.fetchOrders())
+           
+       }, [])
+
         return (
             <div>
-                {this.state.orders.map(order => (
-                    <Order 
-                        key={order.id}
-                        ingredients={order.ingredients}
-                        price={order.price} />
-                ))}
+                {loading? <Spinner/>:
+                   <>
+                        {orders.map(order => (
+                            <Order 
+                                key={order.id}
+                                ingredients={order.ingredients}
+                                price={order.price} />
+                         ))}
+                   </>
+                }
             </div>
         );
     }
-}
+
 export default Orders;
