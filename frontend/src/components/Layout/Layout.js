@@ -4,6 +4,7 @@ import Aux from '../hoc/Auxiliary';
 import classes from './Layout.module.css';
 import Toolbar from '../Navigation/Toolbar/Toolbar';
 import SideDrawer from '../Navigation/SideDrawer/SideDrawer';
+import Footer from '../Footer/Fotter'
 
 const Layout = ( props ) => {
 
@@ -32,6 +33,8 @@ const Layout = ( props ) => {
         <main className={classes.Content}>
             {props.children}
         </main>
+        <Footer/>
+
     </Aux>
     )
 }

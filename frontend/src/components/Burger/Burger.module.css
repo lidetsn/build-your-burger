@@ -1,32 +1,34 @@
 .Burger {
-    width: 100%;
-    /* margin: auto; */
-    /* height: 250px; */
+    width:80%;
+    margin:0px auto;
+    height:500px;
     /* overflow: scroll; */
     overflow-y: scroll;
     text-align: center;
-    font-weight: bold;
+    /* font-weight: bold; */
     font-size: 1.2rem;
+    
+}
+.Greeting {
+    padding: 5px;
+   
+    color: #bc581e;
 }
 
-@media (min-width: 500px) and (min-height: 400px) {
+@media screen and  (max-width: 639px) {
+    .Burger {
+        /* width: 150px; */
+        width: 100%;
+        height: 200px;
+      
+      
+    }
+   
+}
+
+@media  screen and(max-width: 769px) {
     .Burger {
         width: 350px;
         height: 300px;
-      
-    }
-}
-
-@media (min-width: 500px) and (min-height: 401px) {
-    .Burger {
-        width: 450px;
-        height: 400px;
-    }
-}
-
-@media (min-width: 1000px) and (min-height: 700px) {
-    .Burger {
-        width: 700px;
-        height:500px;
     }
 }

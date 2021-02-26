@@ -1,6 +1,7 @@
 export {
     addIngredient,
     removeIngredient,
+    reSetIngredients
   //  initIngredients
 } from './burgerBuilder';
 export {
@@ -9,5 +10,16 @@ export {
     fetchOrders
 } from './order';
 export {
-  auth
+  auth,
+  authReset,
+  logout,
+  setAuthRedirectPath,
+  authCheckState,
+  registerUser
+  
 } from './auth';
+
+// export {
+ 
+//   registerUser
+// } from './registration';

@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment'
 
 import classes from './Order.module.css';
 
@@ -27,7 +28,9 @@ const order = ( props ) => {
     });
 
     return (
+
         <div className={classes.Order}>
+            <p>OrderDate:{moment(props.orderDate).format("MM-DD-YYYY h:mm a")}</p>
             <p>Ingredients: {ingredientOutput}</p>
             <p>Price: <strong>USD {Number.parseFloat( props.price ).toFixed( 2 )}</strong></p>
         </div>

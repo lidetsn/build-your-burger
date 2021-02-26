@@ -17,7 +17,7 @@ const burger = ( props ) => {
 
 
     if (transformedIngredients.length === 0) {
-            transformedIngredients = <p>Please start adding ingredients!</p>;
+            transformedIngredients = <span>Hi<span className={classes.Greeting}>{props.name.toUpperCase()},</span>start adding ingredients!</span>;
     }
 
     return (

@@ -11,6 +11,7 @@
     padding: 0 20px;
     box-sizing: border-box;
     z-index: 90;
+    color: white;
 }
 
 .Toolbar nav {
@@ -26,3 +27,23 @@
         display: none;
     }
 }
+
+/* @media screen and  (max-width: 639px){ */
+    .Name{
+       
+       position: fixed;
+       top: 0;
+       left: 10%;
+        font-style: oblique;
+        font-family:cursive;
+    }
+/* } */
+
+@media screen and  (max-width: 639px){
+    .Name{
+       
+        position: fixed;
+        top: 0;
+        left: 30%;
+     }
+ }

@@ -22,6 +22,13 @@ export const setIngredients = ( ingredients ) => {
                 ingredients: ingredients
             };
 };
+export const reSetIngredients = () => {
+    return {
+        type: actionTypes.RESET_INGREDIENTS,
+        
+    };
+};
+
 
 export const fetchIngredientsFailed = () => {
     return {

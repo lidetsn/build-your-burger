@@ -1,12 +1,15 @@
 .BuildControls {
-    width: 50%;
+    width: 80%;
     background-color: #CF8F2E;
+    /* background: rgba(0, 0, 0, 0.5); */
+
     display: flex;
     flex-flow: column;
     align-items: center;
-    box-shadow: 0 2px 1px #ccc;
-    margin: auto;
-    padding: 10px 0;
+    box-shadow: 0 20px 10px #ccc;
+    margin:0px 150px;
+    /* padding: 10px 0; */
+ 
 }
 
 .OrderButton {
@@ -37,7 +40,9 @@
 .OrderButton:not(:disabled) {
     animation: enable 0.3s linear;
 }
-
+.Lable{
+    color:white
+}
 @keyframes enable {
     0% {
         transform: scale(1);
@@ -47,5 +52,26 @@
     }
     100% {
         transform: scale(1);
+    }
+}
+
+/* add media */
+@media screen and  (max-width: 639px) {
+    .BuildControls {
+        width: 100%;
+        background-color: #CF8F2E;
+       
+        align-items: center;
+        box-shadow: 0 20px 10px #ccc;
+        margin:0px 0px;
+        /* padding: 10px 0; */      
+       
+    }
+}
+
+@media  screen and(max-width: 769px) {
+    .BuildControls {
+        width: 700px;
+        height:500px;
     }
 }

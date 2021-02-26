@@ -23,14 +23,20 @@ export const purchaseBurgerStart = () => {
     };
 };
 
-export const purchaseBurger = ( orderData ) => {
+export const purchaseBurger = ( orderData,token ) => {
     return dispatch => {
         dispatch( purchaseBurgerStart() );
+        const config={
+                    headers:{
+                        "content-Type":"application/json",
+                        Authorization:`Bearer ${token}`
+            }
+                      }
 
-        axios.post( '/api/order', orderData )
+        axios.post( '/api/order', orderData,config )
             .then( response => {
                 console.log( response.data );
-                dispatch( purchaseBurgerSuccess( response.data.name, orderData ) );
+               // dispatch( purchaseBurgerSuccess( response.data.name, orderData ) );
             } )
             .catch( error => {
                 dispatch( purchaseBurgerFail( error ) );
@@ -66,11 +72,17 @@ export const fetchOrdersStart = () => {
     };
 };
 
-export const fetchOrders = () => {
+export const fetchOrders = (token) => {
       return dispatch => {
              dispatch(fetchOrdersStart());
+                     const config={
+                        headers:{
+                            "content-Type":"application/json",
+                            Authorization:`Bearer ${token}`
+                             }
+                                  }
 
-                  axios.get('/api/order')
+                  axios.get('/api/order',config)
                                 .then(res => {
                                     const fetchedOrders = [];
                                     for (let key in res.data) {

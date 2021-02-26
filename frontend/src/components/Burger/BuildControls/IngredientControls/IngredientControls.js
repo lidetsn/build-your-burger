@@ -11,7 +11,9 @@ const controls = [
 ];
 
 const IngredientControls = (props) => (
+
     <div className={classes.BuildControls}>
+        <h4 className={classes.Lable}>welcome {props.name.toUpperCase() || "Guest"}</h4>
         <p>Current Price: <strong>{props.price.toFixed(2)}</strong></p>
         {controls.map(ctrl => (
             <IngredientControl 
@@ -19,12 +21,13 @@ const IngredientControls = (props) => (
                 label={ctrl.label}
                 added={() => props.ingredientAdded(ctrl.type)}
                 removed={() => props.ingredientRemoved(ctrl.type)}
-                disabled={props.disabled[ctrl.type]} />
+                disabled={props.disabled[ctrl.type]} 
+                modify={props.modify}/>
         ))}
         <button 
             className={classes.OrderButton}
             disabled={!props.purchasable}
-            onClick={props.ordered}>ORDER NOW</button>
+            onClick={props.ordered}>{props.isLogedIn? "ORDER NOW":"LOGIN TO ORDER"}</button>
     </div>
 );
 

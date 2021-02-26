@@ -1,5 +1,9 @@
 
-@media (min-width: 500px) and (min-height: 400px){
+.checkout{
+    margin: 100px auto ;
+}
+
+@media (min-width: 639px) {
 .checkout{
     display: flex;
 }

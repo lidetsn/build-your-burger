@@ -1,11 +1,26 @@
 .CheckoutSummary {
     text-align: center;
-    width: 80%;
+    
+    width: 50%;
     /* margin: auto; */
 }
 
-@media (min-width: 600px) {
+@media screen and  (max-width: 639px) {
     .CheckoutSummary {
-        width: 500px;
+        width: 100%;
+        background-color: #CF8F2E;
+        color: white;
+        align-items: center;
+        box-shadow: 0 20px 10px #ccc;
+        margin:0px 0px;
+        padding: 10px 0;      
+       
+    }
+}
+
+@media  screen and(max-width: 769px) {
+    .CheckoutSummary {
+        width: 700px;
+        height:500px;
     }
 }

@@ -24,9 +24,12 @@ import '../Checkout/checkout.css'
 const BurgerBuilder =(props)=>{
    
       const   burgerBuilder = useSelector(state => state.burgerBuilder)
-      const   {ingredients,totalPrice,error}=burgerBuilder
+      const   {ingredients,totalPrice,numOfIngredints, error}=burgerBuilder
+      const auth = useSelector(state => state.auth)
+      const {userInfo}=auth
       const   order = useSelector(state => state.order)
       const [purchasing,setPurchasing]=useState(false)
+      const [modify,setModify]=useState(false)
       const dispatch=useDispatch()
              //replaced with redux   
     // const [ingredients,setIngredints]=useState({salad:0,bacon:0,cheese:0,meat:0})
@@ -55,7 +58,11 @@ const BurgerBuilder =(props)=>{
     }
 
     const onIngredientAdded=(type)=>{
+            if(numOfIngredints<8){
+              //  setNumOfIngredints(numOfIngredints+1)
+            
              dispatch(actions.addIngredient(type))
+            }
        }
 /*   //moved to redux 
    const addIngredientHandler = ( type ) => {
@@ -79,8 +86,16 @@ const BurgerBuilder =(props)=>{
 */
 
 const  onIngredientRemoved=(type)=>{
+  //  setNumOfIngredints(numOfIngredints-1)
        dispatch(actions.removeIngredient(type))
+       setModify(false)
 }
+const reSetIngredients=()=>{
+    //    dispatch(actions.reSetIngredients())
+       setModify(true)
+     //  setNumOfIngredints(0)
+
+ }
 /*   moved to redux
     const removeIngredientHandler = ( type ) => {
         const oldCount = ingredients[type];
@@ -105,7 +120,13 @@ const  onIngredientRemoved=(type)=>{
 */
 
     const purchaseHandler = () => {
-         setPurchasing(true)
+          if(userInfo !==null)  { 
+              setPurchasing(true)
+               }
+               else{
+                   dispatch(actions.setAuthRedirectPath("/checkout"))
+                   props.history.push("/login")
+               }
             }
 
     const purchaseCancelHandler = () => {
@@ -142,18 +163,27 @@ const  onIngredientRemoved=(type)=>{
         return (
             <Aux >
 
-                 <Modal show={purchasing} modalClosed={purchaseCancelHandler}>
+                 <Modal show={purchasing || numOfIngredints===8 && !modify} modalClosed={purchaseCancelHandler}>
 
                        {/* {loading?<Spinner/>: */}
                                 <OrderSummary 
                                             ingredients={ingredients}
                                             purchaseCancelled={purchaseCancelHandler}
                                             purchaseContinued={purchaseContinueHandler} 
-                                            price={totalPrice}/>
+                                            reSetIngredients={reSetIngredients}
+                                            price={totalPrice}
+                                            numOfIngredints={numOfIngredints}
+                                            isLogedIn={userInfo!==null}
+                                            ordered={purchaseHandler}
+                                            modify={modify}
+                                          />
                                             {/* } */}
                   </Modal>
+                
+
                   <div className="checkout">
-               <Burger ingredients={ingredients} />
+               <Burger ingredients={ingredients} 
+                       name={userInfo===null? "Guest":userInfo.userName}/>
                 <IngredientControls
                             //ingredientAdded={addIngredientHandler}
                             ingredientAdded={onIngredientAdded}
@@ -161,11 +191,14 @@ const  onIngredientRemoved=(type)=>{
                             ingredientRemoved={onIngredientRemoved}
 
                             disabled={disabledInfo}
+                            modify={modify}
                             // purchasable={purchasable}
                             purchasable={updatePurchaseState(ingredients)}
 
                             ordered={purchaseHandler}
                             price={totalPrice} 
+                            isLogedIn={userInfo!==null}
+                            name={userInfo===null?"Guest":userInfo.userName}
                     /></div>
                            
              </Aux>

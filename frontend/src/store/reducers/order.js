@@ -28,6 +28,9 @@ const purchaseBurgerFail = ( state, action ) => {
     return updateObject( state, { loading: false } );
 };
 
+
+//order fetch
+
 const fetchOrdersStart = ( state, action ) => {
     return updateObject( state, { loading: true } );
 };

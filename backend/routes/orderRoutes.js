@@ -1,21 +1,26 @@
 const router=require("express").Router()
 
 const Order=require("../models/orders")
+const auth=require("../middleware/auth")
 
 
-router.post("/",async (req,res)=>{
+router.post("/",auth,async (req,res)=>{
       const data=req.body
-      console.log(data)
-           const order=new Order(data)
-         const ress=await order.save()
+        const neworder={
+                   ...req.body,
+                   user:req.user
+        }
+      //console.log(data)
+           const order=new Order(neworder)
+            const ress=await order.save()
          res.send("recieved")
 
 
 })
 
-router.get("/", async(req,res)=>{
-     const data=await Order.find({})
-     console.log(data) 
+router.get("/",auth, async(req,res)=>{
+     const data=await Order.find({user:req.user}).sort({ orderDate: 'desc' })
+    // console.log(data) 
      res.json(data)
     
   

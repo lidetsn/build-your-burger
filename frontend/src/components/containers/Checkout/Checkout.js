@@ -9,7 +9,7 @@ import './checkout.css'
 const Checkout=(props)=>{
 
        const burgerBuilder= useSelector(state => state.burgerBuilder)
-       const {ingredients}=burgerBuilder
+       const {ingredients,totalPrice}=burgerBuilder
        const order= useSelector(state => state.order)
        const {purchased}=order
 
@@ -50,9 +50,10 @@ class Checkout extends Component {
                 }
 
     //render() {
+        console.log(totalPrice)
         return (
             <>
-            {ingredients?
+            {totalPrice>4?
             <div className="checkout">       
                 {purchased?<Redirect to="/"/> : null}
                 <CheckoutSummary 

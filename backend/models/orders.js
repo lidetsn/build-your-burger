@@ -17,7 +17,14 @@ const orderSchema=new mongoose.Schema({
         default:0.0
         
     },
-   
+    user:{
+        type:mongoose.Schema.Types.ObjectId,
+         ref:"user"
+    },
+    orderDate: {
+        type: Date,
+        default: Date.now,
+      },
        
 })
 module.exports=Order=mongoose.model("order",orderSchema)
